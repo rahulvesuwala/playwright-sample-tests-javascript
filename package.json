@@ -1,0 +1,17 @@
+{
+  "name": "playwright-js-framework",
+  "version": "1.0.0",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@types/node": "^24.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "playwright": "^1.55.0"
+  }
+}
