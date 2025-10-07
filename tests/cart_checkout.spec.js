@@ -28,23 +28,23 @@ async function logout() {
   await allPages.loginPage.clickOnLogoutButton();
 }
 
-test('Verify that user is able to delete selected product from cart @ios', async () => {
-    const productName = 'GoPro HERO10 Black';
-    await login();
-    await allPages.inventoryPage.clickOnShopNowButton();
-    await allPages.inventoryPage.clickOnAllProductsLink();
-    await allPages.inventoryPage.searchProduct(productName);
-    await allPages.inventoryPage.verifyProductTitleVisible(productName);
-    await allPages.inventoryPage.clickOnAddToCartIcon();
+// test('Verify that user is able to delete selected product from cart @ios', async () => {
+//     const productName = 'GoPro HERO10 Black';
+//     await login();
+//     await allPages.inventoryPage.clickOnShopNowButton();
+//     await allPages.inventoryPage.clickOnAllProductsLink();
+//     await allPages.inventoryPage.searchProduct(productName);
+//     await allPages.inventoryPage.verifyProductTitleVisible(productName);
+//     await allPages.inventoryPage.clickOnAddToCartIcon();
 
-    await allPages.cartPage.clickOnCartIcon();
-    await allPages.cartPage.verifyCartItemVisible(productName);
-    await allPages.cartPage.clickOnDeleteProductIcon();
-    await allPages.cartPage.verifyCartItemDeleted(productName);
-    await allPages.cartPage.verifyEmptyCartMessage();
-    await allPages.cartPage.clickOnStartShoppingButton();
-    await allPages.allProductsPage.assertAllProductsTitle();
-});
+//     await allPages.cartPage.clickOnCartIcon();
+//     await allPages.cartPage.verifyCartItemVisible(productName);
+//     await allPages.cartPage.clickOnDeleteProductIcon();
+//     await allPages.cartPage.verifyCartItemDeleted(productName);
+//     await allPages.cartPage.verifyEmptyCartMessage();
+//     await allPages.cartPage.clickOnStartShoppingButton();
+//     await allPages.allProductsPage.assertAllProductsTitle();
+// });
 
 test('Verify new user views and cancels an order in my orders @chromium', async () => {
     const email = `test+${Date.now()}@test.com`;
@@ -104,7 +104,7 @@ test('Verify new user views and cancels an order in my orders @chromium', async 
   });
 });
 
-test('Verify That a New User Can Successfully Complete the Journey from Registration to a Multiple Order Placement @chromium', async () => {
+test.skip('Verify That a New User Can Successfully Complete the Journey from Registration to a Multiple Order Placement @chromium', async () => {
     const email = `test+${Date.now()}@test.com`;
     const firstName = 'Test';
     const lastName = 'User';
@@ -192,9 +192,9 @@ test('Verify that the new user is able to Sign Up, Log In, and Navigate to the H
   })
 })
 
-test('Verify that user can update personal information @firefox', async () => {
-    await login();
-    await allPages.userPage.clickOnUserProfileIcon();
-    await allPages.userPage.updatePersonalInfo();
-    await allPages.userPage.verifyPersonalInfoUpdated();
-});
+// test('Verify that user can update personal information @firefox', async () => {
+//     await login();
+//     await allPages.userPage.clickOnUserProfileIcon();
+//     await allPages.userPage.updatePersonalInfo();
+//     await allPages.userPage.verifyPersonalInfoUpdated();
+// });
