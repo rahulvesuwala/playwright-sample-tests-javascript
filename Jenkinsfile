@@ -37,12 +37,7 @@ pipeline {
             steps {
                 // Ensure this runs even if previous stage failed
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                    sh '''
-                    curl -X POST \
-                    -H "Authorization: Bearer $TESTDINO_API_KEY" \
-                    -F "file=@playwright-report/report.json" \
-                    https://api.testdino.com/report/upload
-                    '''
+                    sh 'NODE_ENV="staging" npx --yes tdpw ./playwright-report/ --token="$TESTDINO_API_KEY"'
                 }
             }
         }
