@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        nodejs 'NODEJS 24'  // Use the exact name from Global Tool Configuration
+    }
     environment {
         TESTDINO_API_KEY = credentials('testdino-api-key') // Add your TestDino API key in Jenkins
     }
