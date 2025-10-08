@@ -43,7 +43,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                     // Run tests with XML and JSON reports in playwright-report folder
-                    sh 'npx playwright test --reporter=dot,junit,json --output=playwright-report'
+                    sh 'npx playwright test'
                 }
             }
         }
