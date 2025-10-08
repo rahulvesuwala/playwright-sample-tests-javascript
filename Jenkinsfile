@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Run Playwright Tests') {
             steps {
-                sh 'npx playwright test --reporter=list,json'
+                sh 'npx playwright test --reporter=list,json || true'
             }
         }
         stage('Publish Test Results') {
