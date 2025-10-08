@@ -1,10 +1,10 @@
 pipeline {
     agent any
     tools {
-        nodejs 'NODEJS 24'  // Name of NodeJS installation in Jenkins
+        nodejs 'NODEJS 24'
     }
     environment {
-        TESTDINO_API_KEY = credentials('testdino-api-key') // Your TestDino API key
+        TESTDINO_API_KEY = credentials('testdino-api-key')
     }
     stages {
         stage('Checkout') {
@@ -15,41 +15,48 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
+                sh 'npx playwright install --with-deps'
             }
         }
         stage('Run Playwright Tests') {
             steps {
-                // Run tests but continue pipeline even if some tests fail
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                    sh 'npx playwright test --reporter=dot,junit,json'
+                    sh '''
+                    mkdir -p playwright-report
+                    npx playwright test --reporter=dot,junit=playwright-report/results.xml,json=playwright-report/report.json
+                    '''
                 }
             }
         }
         stage('Publish Test Results') {
             steps {
-                // Publish JUnit XML reports to Jenkins
-                junit 'playwright-report/*.xml'
-                // Archive reports as artifacts
+                junit 'playwright-report/results.xml'
                 archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
             }
         }
         stage('Upload TestDino Report') {
             steps {
-                // Ensure this runs even if previous stage failed
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                    sh '''
-                    curl -X POST \
-                    -H "Authorization: Bearer $TESTDINO_API_KEY" \
-                    -F "file=@playwright-report/report.json" \
-                    https://api.testdino.com/report/upload
-                    '''
+                    dir('playwright-report') {
+                        sh '''
+                        if [ -f "report.json" ]; then
+                            echo "Uploading TestDino report..."
+                            curl -X POST \
+                            -H "Authorization: Bearer $TESTDINO_API_KEY" \
+                            -F "file=@report.json" \
+                            https://api.testdino.com/report/upload
+                        else
+                            echo "⚠️ No report.json found. Skipping TestDino upload."
+                        fi
+                        '''
+                    }
                 }
             }
         }
     }
     post {
         always {
-            echo "Pipeline finished. Check test results and TestDino report."
+            echo "✅ Pipeline finished. Check Jenkins Test Results tab and TestDino dashboard."
         }
     }
 }
