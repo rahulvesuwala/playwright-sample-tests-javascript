@@ -5,7 +5,7 @@
 name: Run Playwright tests
 
 on:
-  #push:          # runs on every push
+  push:          # runs on every push
   pull_request:  # runs on new PRs or PR updates
   workflow_dispatch:
 
