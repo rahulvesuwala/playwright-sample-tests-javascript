@@ -73,7 +73,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                     sh '''
-                    NODE_ENV="staging" npx --yes tdpw ./playwright-report/ --token="$TESTDINO_API_KEY"
+                    npx --yes tdpw ./playwright-report/ --token="$TESTDINO_API_KEY"
                     '''
                 }
             }
