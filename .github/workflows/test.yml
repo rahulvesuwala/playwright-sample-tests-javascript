@@ -119,4 +119,8 @@ jobs:
       - name: Run tests and upload report
         run: |
           npx playwright test || true
-          TESTDINO_RUNTIME="staging" npx tdpw upload ./playwright-report --token="${{ secrets.TESTDINO_TOKEN }}" --verbose
+            npx tdpw upload ./playwright-report \
+                --token="${{ secrets.TESTDINO_TOKEN }}" \
+                --upload-html \
+                --upload-traces \
+                --verbose
