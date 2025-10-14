@@ -16,5 +16,5 @@ test('test @chromium', async ({ page }) => {
   await expect(page).toHaveScreenshot('github-login.png');
   await page.getByRole('textbox', { name: 'Username or email address' }).click();
   await page.getByRole('textbox', { name: 'Username or email address' }).fill('test');
-  await expect(page).toHaveScreenshot('github-login.png');
+  await expect(page).toHaveScreenshot('github-login.png');    
 });
