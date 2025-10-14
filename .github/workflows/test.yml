@@ -94,6 +94,11 @@ jobs:
           npm ci
           npx playwright install --with-deps
 
+      - name: Install tdpw from local package
+        run: |
+          npm uninstall tdpw
+          npm install ./tdpw-1.0.15.tgz
+
       - name: Download all blob reports
         uses: actions/download-artifact@v4
         with:
@@ -111,12 +116,7 @@ jobs:
           path: ./playwright-report
           retention-days: 14
 
-      - name: Send TestDino report
-        #env:
-         # NODE_ENV: staging
+      - name: Run tests and upload report
         run: |
-         npx --yes tdpw ./playwright-report \
-           --token="${{ secrets.TESTDINO_TOKEN }}" \
-           --upload-html \
-           --upload-traces \
-           --verbose
+          npx playwright test || true
+          TESTDINO_RUNTIME="staging" npx tdpw upload ./playwright-report --token="${{ secrets.TESTDINO_TOKEN }}" --verbose

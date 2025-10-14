@@ -61,7 +61,7 @@ test('Verify that the New User is able to add Addresses in the Address section @
 });
 
 test('Verify that user can purchase multiple quantities in a single order @andriod', async () => {
-    const productName = 'GoPro HERO10 Black';
+    const productName = 'GoPro HERO10 Black1';
     await login();
     await allPages.inventoryPage.clickOnShopNowButton();
     await allPages.inventoryPage.clickOnAllProductsLink();
