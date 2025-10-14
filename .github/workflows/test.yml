@@ -115,7 +115,7 @@ jobs:
         #env:
          # NODE_ENV: staging
         run: |
-         npx --yes tdpw ./playwright-report \
+          TESTDINO_RUNTIME=staging npx --yes tdpw ./playwright-report \
            --token="${{ secrets.TESTDINO_TOKEN }}" \
            --upload-html \
            --upload-traces \
