@@ -58,6 +58,7 @@ test('Verify that the New User is able to add Addresses in the Address section @
     await allPages.userPage.clickOnAddAddressButton();
     await allPages.userPage.checkAddNewAddressMenu();
     await allPages.userPage.fillAddressForm();
+    await allPages.userPage.verifytheAddressIsAdded();
 });
 
 test('Verify that user can purchase multiple quantities in a single order @andriod', async () => {
