@@ -114,6 +114,7 @@ jobs:
       - name: Send TestDino report
         run: |
           npm uninstall tdpw
+          npm install ./tdpw-1.0.18.tgz
           TESTDINO_RUNTIME="staging" npx --yes tdpw upload ./playwright-report \
            --token="${{ secrets.TESTDINO_TOKEN }}" --verbose \
           #  --upload-html \
