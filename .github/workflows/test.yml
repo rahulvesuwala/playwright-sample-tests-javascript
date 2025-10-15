@@ -89,11 +89,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install deps + browsers
-        run: |
-          npm ci
-          npx playwright install --with-deps
-
       - name: Download all blob reports
         uses: actions/download-artifact@v4
         with:
