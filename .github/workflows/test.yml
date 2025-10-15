@@ -8,7 +8,7 @@ on:
   push:          # runs on every push
   pull_request:  # runs on new PRs or PR updates
   workflow_dispatch:
-
+  
 jobs:
   run-tests:
     name: Run shard ${{ matrix.shardIndex }}/5
@@ -115,8 +115,17 @@ jobs:
         #env:
          # NODE_ENV: staging
         run: |
+         npm 
          npx --yes tdpw ./playwright-report \
            --token="${{ secrets.TESTDINO_TOKEN }}" \
            --upload-html \
            --upload-traces \
            --verbose
+
+
+# check with 
+
+# sahilalphabin@sahilalphabin:~/data/testdino/2/playwright-sample-tests-javascript$ git config --global user.name
+# sahil
+# recommit 
+# change na,e to sahil patel
