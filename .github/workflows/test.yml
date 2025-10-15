@@ -115,10 +115,10 @@ jobs:
         run: |
           npm uninstall tdpw
           npm install ./tdpw-1.0.18.tgz
-          TESTDINO_RUNTIME=staging npx --yes tdpw ./playwright-report \
-           --token="${{ secrets.TESTDINO_TOKEN }}" \
+          TESTDINO_RUNTIME="staging" npx --yes tdpw upload ./playwright-report \
+           --token="${{ secrets.TESTDINO_TOKEN }}" --verbose \
           #  --upload-html \
           #  --upload-traces \
-           --verbose
+           
 
 # aaowdaof
