@@ -120,3 +120,9 @@ jobs:
            --upload-html \
            --upload-traces \
            --verbose
+
+
+# check with 
+
+# sahilalphabin@sahilalphabin:~/data/testdino/2/playwright-sample-tests-javascript$ git config --global user.name
+# sahil
