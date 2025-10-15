@@ -112,13 +112,13 @@ jobs:
           retention-days: 14
 
       - name: Send TestDino report
-        #env:
-         # NODE_ENV: staging
         run: |
-          TESTDINO_RUNTIME=staging npx --yes tdpw ./playwright-report \
-           --token="${{ secrets.TESTDINO_TOKEN }}" \
-           --upload-html \
-           --upload-traces \
-           --verbose
+          npm uninstall tdpw
+          npm install ./tdpw-1.0.19.tgz
+          TESTDINO_RUNTIME="staging" npx --yes tdpw upload ./playwright-report \
+           --token="${{ secrets.TESTDINO_TOKEN }}" --verbose \
+          #  --upload-html \
+          #  --upload-traces \
+           
 
-           # aaowdaof
+# aaowdaofawdawdawdawd
