@@ -39,7 +39,7 @@ jobs:
           echo "STATE=${{ secrets.STATE }}" >> .env
           echo "COUNTRY=${{ secrets.COUNTRY }}" >> .env
           echo "ZIP_CODE=${{ secrets.ZIP_CODE }}" >> .env
-     
+
       - name: Cache npm dependencies
         uses: actions/cache@v3
         with:
@@ -48,10 +48,26 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install deps + browsers
-        run: |
-          npm ci
-          npx playwright install --with-deps chromium firefox webkit
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(node -p "require('./package-lock.json').packages['node_modules/@playwright/test'].version")" >> $GITHUB_OUTPUT
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright system dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: sudo npx playwright install-deps chromium firefox webkit
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium firefox webkit
 
       - name: List Playwright projects (debug)
         run: npx playwright list --projects | cat
