@@ -130,7 +130,7 @@ jobs:
       - name: Send TestDino report
         run: |
           TESTDINO_RUNTIME="staging" npx --yes tdpw upload ./playwright-report \
-           --token="${{ secrets.TESTDINO_TOKEN }}" --verbose \
+           --token="trx_staging_e80dfb8437a14deafdbbb1b09e34b33db462a1edd170ae2e0023c4290ca71752" --verbose \
           #  --upload-html \
           #  --upload-traces \
            
