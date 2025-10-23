@@ -120,4 +120,3 @@ jobs:
            --upload-html \
            --upload-traces \
            --verbose
-           --version
