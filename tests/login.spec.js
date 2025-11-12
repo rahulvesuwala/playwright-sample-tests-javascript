@@ -27,24 +27,24 @@ test('Verify that user can login and logout successfully @chromium', async () =>
   await logout(); 
 });
 
-// test('Verify that the new user is able to Sign Up, Log In, and Navigate to the Home Page Successfully @chromium', async () => {
-//     const email = `test+${Date.now()}@test.com`;
-//     const firstName = 'Test';
-//     const lastName = 'User';
+test('Verify that the new user is able to Sign Up, Log In, and Navigate to the Home Page Successfully @chromium', async () => {
+    const email = `test+${Date.now()}@test.com`;
+    const firstName = 'Test';
+    const lastName = 'User';
 
-//   await test.step('Verify that user can register successfully', async () => {
-//     await allPages.loginPage.clickOnUserProfileIcon();
-//     await allPages.loginPage.validateSignInPage();
-//     await allPages.loginPage.clickOnSignupLink();
-//     await allPages.signupPage.assertSignupPage();
-//     await allPages.signupPage.signup(firstName, lastName, email, process.env.PASSWORD);
-//     await allPages.signupPage.verifySuccessSignUp();
-//   })
+  await test.step('Verify that user can register successfully', async () => {
+    await allPages.loginPage.clickOnUserProfileIcon();
+    await allPages.loginPage.validateSignInPage();
+    await allPages.loginPage.clickOnSignupLink();
+    await allPages.signupPage.assertSignupPage();
+    await allPages.signupPage.signup(firstName, lastName, email, process.env.PASSWORD);
+    await allPages.signupPage.verifySuccessSignUp();
+  })
 
-//   await test.step('Verify that user can login successfully', async () => {
-//     await allPages.loginPage.validateSignInPage();
-//     await allPages.loginPage.login(email, process.env.PASSWORD);
-//     await allPages.loginPage.verifySuccessSignIn();
-//     await expect(allPages.homePage.getHomeNav()).toBeVisible({ timeout: 30000 });
-//   })
-// })
+  await test.step('Verify that user can login successfully', async () => {
+    await allPages.loginPage.validateSignInPage();
+    await allPages.loginPage.login(email, process.env.PASSWORD);
+    await allPages.loginPage.verifySuccessSignIn();
+    await expect(allPages.homePage.getHomeNav()).toBeVisible({ timeout: 30000 });
+  })
+})
