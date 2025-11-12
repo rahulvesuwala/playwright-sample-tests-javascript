@@ -120,3 +120,7 @@ jobs:
            --upload-html \
            --upload-traces \
            --verbose
+   # 8️⃣ Cache tdpw metadata (so next rerun knows what failed)
+      - name: Cache TestDino metadata
+        if: always()
+        run: npx tdpw cache
