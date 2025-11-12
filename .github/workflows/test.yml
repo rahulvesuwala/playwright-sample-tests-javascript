@@ -111,7 +111,9 @@ jobs:
       # 8️⃣ Cache tdpw metadata (so next rerun knows what failed)
       - name: Cache TestDino metadata
         if: always()
-        run: npx tdpw cache
+        run: |
+          TESTDINO_RUNTIME="staging" npx tdpw cache \
+          --token="${{ secrets.TESTDINO_TOKEN }}" \
 
       - name: Upload combined report
         uses: actions/upload-artifact@v4
@@ -124,7 +126,7 @@ jobs:
         #env:
          # NODE_ENV: staging
         run: |
-          TESTDINO_RUNTIME="staging" npx --yes tdpw ./playwright-report \
+          TESTDINO_RUNTIME="staging" npx tdpw upload ./playwright-report \
            --token="${{ secrets.TESTDINO_TOKEN }}" \
            --upload-html \
            --upload-traces \
