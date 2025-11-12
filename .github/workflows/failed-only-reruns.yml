@@ -67,7 +67,7 @@ jobs:
       - name: Get last failed tests with tdpw
         id: last-failed
         run: |
-          npx tdpw last-failed > last-failed-flags.txt
+          TESTDINO_RUNTIME="staging" npx tdpw last-failed > last-failed-flags.txt
           EXTRA_FLAGS="$(cat last-failed-flags.txt)"
           echo "extra-flags=$EXTRA_FLAGS" >> $GITHUB_OUTPUT
 
