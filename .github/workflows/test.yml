@@ -72,6 +72,9 @@ jobs:
     needs: run-tests
     if: always()             # run even if some shards fail
     runs-on: ubuntu-latest
+    env:
+      TESTDINO_TOKEN: ${{ secrets.TESTDINO_TOKEN }}
+      TESTDINO_RUNTIME: staging
 
     steps:
       - uses: actions/checkout@v4
@@ -94,6 +97,7 @@ jobs:
           npm ci
           npx playwright install --with-deps
 
+
       - name: Download all blob reports
         uses: actions/download-artifact@v4
         with:
@@ -103,6 +107,11 @@ jobs:
 
       - name: Merge HTML & JSON reports
         run: npx playwright merge-reports --config=playwright.config.js ./all-blob-reports
+
+      # 8️⃣ Cache tdpw metadata (so next rerun knows what failed)
+      - name: Cache TestDino metadata
+        if: always()
+        run: npx tdpw cache
 
       - name: Upload combined report
         uses: actions/upload-artifact@v4
@@ -120,7 +129,3 @@ jobs:
            --upload-html \
            --upload-traces \
            --verbose
-   # 8️⃣ Cache tdpw metadata (so next rerun knows what failed)
-      - name: Cache TestDino metadata
-        if: always()
-        run: npx tdpw cache
