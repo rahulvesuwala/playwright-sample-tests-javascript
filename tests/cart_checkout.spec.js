@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 async function login(username = process.env.USERNAME, password = process.env.PASSWORD) {
   await allPages.loginPage.clickOnUserProfileIcon();
   await allPages.loginPage.validateSignInPage();
-  await allPages.loginPage.login(username, password);
+  await allPages.loginPage.login(username, password); 
 }
 
 async function login1(username = process.env.USERNAME1, password = process.env.PASSWORD) {
@@ -28,7 +28,8 @@ async function logout() {
   await allPages.loginPage.clickOnLogoutButton();
 }
 
-test('Verify that user is able to delete selected product from cart @ios', async () => {
+
+test('Verify that user is able to delete selected product from cart @ios @critical', async () => {
     const productName = 'GoPro HERO10 Black';
     await login();
     await allPages.inventoryPage.clickOnShopNowButton();
@@ -46,7 +47,7 @@ test('Verify that user is able to delete selected product from cart @ios', async
     await allPages.allProductsPage.assertAllProductsTitle();
 });
 
-test('Verify new user views and cancels an order in my orders @chromium', async () => {
+test('Verify new user views and cancels an order in my orders @chromium @critical', async () => {
     const email = `test+${Date.now()}@test.com`;
     const firstName = 'Test';
     const lastName = 'User';
@@ -104,7 +105,7 @@ test('Verify new user views and cancels an order in my orders @chromium', async 
   });
 });
 
-test('Verify That a New User Can Successfully Complete the Journey from Registration to a Multiple Order Placement @chromium', async () => {
+test('Verify That a New User Can Successfully Complete the Journey from Registration to a Multiple Order Placement @chromium @smoke', async () => {
     const email = `test+${Date.now()}@test.com`;
     const firstName = 'Test';
     const lastName = 'User';
@@ -170,7 +171,7 @@ test('Verify That a New User Can Successfully Complete the Journey from Registra
   })
 });
 
-test('Verify that the new user is able to Sign Up, Log In, and Navigate to the Home Page Successfully @chromium', async () => {
+test('Verify that the new user is able to Sign Up, Log In, and Navigate to the Home Page Successfully @chromium @regression', async () => {
     const email = `test+${Date.now()}@test.com`;
     const firstName = 'Test';
     const lastName = 'User';
@@ -192,7 +193,7 @@ test('Verify that the new user is able to Sign Up, Log In, and Navigate to the H
   })
 })
 
-test('Verify that user can update personal information @firefox', async () => {
+test('Verify that user can update personal information @smoke', async () => {
     await login();
     await allPages.userPage.clickOnUserProfileIcon();
     await allPages.userPage.updatePersonalInfo();

@@ -28,7 +28,7 @@ async function logout() {
   await allPages.loginPage.clickOnLogoutButton();
 }
 
-test('Verify that all the navbar are working properly @firefox', async () => {
+test('Verify that all the navbar are working properly @smoke', async () => {
     await login();
     await allPages.homePage.clickBackToHomeButton();
     // await allPages.homePage.assertHomePage();
@@ -40,7 +40,7 @@ test('Verify that all the navbar are working properly @firefox', async () => {
     await allPages.homePage.assertAboutUsTitle();
 });
 
-test('Verify that user is able to fill Contact Us page successfully @firefox', async () => {
+test('Verify that user is able to fill Contact Us page successfully @smoke', async () => {
     await login();
     await allPages.homePage.clickOnContactUsLink();
     await allPages.contactUsPage.assertContactUsTitle();
