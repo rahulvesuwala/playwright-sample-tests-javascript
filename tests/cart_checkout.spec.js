@@ -28,6 +28,7 @@ async function logout() {
   await allPages.loginPage.clickOnLogoutButton();
 }
 
+
 test('Verify that user is able to delete selected product from cart @ios @critical', async () => {
     const productName = 'GoPro HERO10 Black';
     await login();
@@ -192,7 +193,7 @@ test('Verify that the new user is able to Sign Up, Log In, and Navigate to the H
   })
 })
 
-test('Verify that user can update personal information @firefox @smoke', async () => {
+test('Verify that user can update personal information @smoke', async () => {
     await login();
     await allPages.userPage.clickOnUserProfileIcon();
     await allPages.userPage.updatePersonalInfo();

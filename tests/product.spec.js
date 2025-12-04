@@ -28,7 +28,7 @@ async function logout() {
   await allPages.loginPage.clickOnLogoutButton();
 }
 
-test('Verify that user is able to submit a product review @firefox', async () => {
+test('Verify that user is able to submit a product review @smoke', async () => {
   await test.step('Login as existing user and navigate to a product', async () => {
     await login();
   })
@@ -53,7 +53,7 @@ test('Verify that user is able to submit a product review @firefox', async () =>
   })
 });
 
-test('Verify that user can edit and delete a product review @firefox', async () => {
+test('Verify that user can edit and delete a product review @smoke', async () => {
   await test.step('Login as existing user and navigate to a product', async () => {
     await login();
   })
@@ -91,7 +91,7 @@ test('Verify that user can edit and delete a product review @firefox', async () 
   })
 });
 
-test('Verify that user can filter products by price range @webkit', async () => {
+test('Verify that user can filter products by price range @chromium', async () => {
     await login();
     await allPages.homePage.clickOnShopNowButton();
     await allPages.homePage.clickOnFilterButton();
@@ -99,7 +99,7 @@ test('Verify that user can filter products by price range @webkit', async () => 
     await allPages.homePage.clickOnFilterButton();
 });
 
-test('Verify if user can add product to wishlist, moves it to card and then checks out @webkit', async () => {
+test('Verify if user can add product to wishlist, moves it to card and then checks out @chromium', async () => {
     await login();
   
     await test.step('Add product to wishlistand then add to cart', async () => {
@@ -122,7 +122,7 @@ test('Verify if user can add product to wishlist, moves it to card and then chec
     })
 });
   
-test('Verify that User Can Complete the Journey from Login to Order Placement @webkit', async () => {
+test('Verify that User Can Complete the Journey from Login to Order Placement @chromium', async () => {
       const productName = 'GoPro HERO10 Black';
       await login();
       await allPages.inventoryPage.clickOnShopNowButton();
@@ -142,7 +142,7 @@ test('Verify that User Can Complete the Journey from Login to Order Placement @w
       await allPages.checkoutPage.verifyOrderPlacedSuccessfully();
 });
     
-test('Verify user can place and cancel an order @webkit', async () => {
+test('Verify user can place and cancel an order @chromium', async () => {
         const productName = 'GoPro HERO10 Black';
         const productPriceAndQuantity = '₹49,999 × 1';
         const productQuantity = '1';
@@ -312,7 +312,7 @@ test('Verify that a New User Can Successfully Complete the Journey from Registra
       });
 });
 
-test('Verify that user add product to cart before logging in and then complete order after logging in @webkit', async () => {
+test('Verify that user add product to cart before logging in and then complete order after logging in @s', async () => {
       await test.step('Navigate and add product to cart before logging in', async () => {
         await allPages.homePage.clickOnShopNowButton();
         await allPages.homePage.clickProductImage();
